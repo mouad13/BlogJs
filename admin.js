@@ -18,7 +18,6 @@ $("#button").click(function(){
 	$("input").val("");
 	$("textarea").val("");
 	blog.push(contenu);
-//console.log(blog);
 
   $.ajax({ 
     url:'http://192.168.1.50/json-db',
@@ -33,13 +32,35 @@ $("#button").click(function(){
 });
 
 
-$.ajax({
-  url:'http://192.168.1.50/json-db',
-  data: {
-    task: 'get',
-    key: 'MouadBlog'
-    },
-   success: function(data){
-     console.log(data);
-   }
-  });
+function Blog(tab){
+ 	for (var i = 0; i < tab.length; i++) {
+ 		$("#title").append('<div>'+tab[i][i].titre+'</div>');
+ 		$("#info").append('<div>'+tab[i][i].text+'</div>')
+ 	}
+}
+
+
+
+function charger(){
+	$.ajax({ 
+		url:'http://192.168.1.50/json-db', 
+		data: { 
+			task: 'get',
+			key: 'MouadBlog', 
+			} 
+	})
+	.done(function(data){
+
+		blog=JSON.parse(data);
+		console.log(blog);
+		Blog(blog);
+	});	
+
+			
+   //console.log(data);
+}
+
+
+
+charger();
+
