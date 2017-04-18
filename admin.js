@@ -34,8 +34,8 @@ $("#button").click(function(){
 
 function Blog(tab){
  	for (var i = 0; i < tab.length; i++) {
- 		$("#title").append('<div>'+tab[i][i].titre+'</div>');
- 		$("#info").append('<div>'+tab[i][i].text+'</div>')
+ 		$("#title").append('<option>'+tab[i][i].titre+'</option>');
+ 		$("#info").append('<div>'+tab[i][i].text+'</div>');
  	}
 }
 
@@ -59,8 +59,42 @@ function charger(){
 			
    //console.log(data);
 }
-
-
-
 charger();
 
+$("#text").keyup(function(){
+	
+var converter = new showdown.Converter(),
+    text      = $('#text').val(),
+    html      = converter.makeHtml(text);
+	
+	$("#texthtml").html(html);
+});
+    //console.log(html);
+
+
+
+
+
+
+
+
+ // $.ajax({
+	// url:'http://192.168.1.50/json-db',
+ // 	data: {
+ // 		task: 'delete',
+ // 		key: 'MouadBlog'
+ // 	}
+ // });
+	
+
+
+
+// $.ajax({
+//   url:'http://192.168.1.50/json-db',
+//   data: {
+//     task: 'get',
+//     key: 'MouadBlog'
+//     },
+//    success: function(data){
+//    }
+//   });
