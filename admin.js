@@ -72,29 +72,3 @@ var converter = new showdown.Converter(),
     //console.log(html);
 
 
-
-
-
-
-
-
- // $.ajax({
-	// url:'http://192.168.1.50/json-db',
- // 	data: {
- // 		task: 'delete',
- // 		key: 'MouadBlog'
- // 	}
- // });
-	
-
-
-
-// $.ajax({
-//   url:'http://192.168.1.50/json-db',
-//   data: {
-//     task: 'get',
-//     key: 'MouadBlog'
-//     },
-//    success: function(data){
-//    }
-//   });
