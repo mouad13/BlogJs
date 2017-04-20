@@ -41,14 +41,14 @@ $("#button").click(function(){
 	$("input").val("");
 	$("textarea").val("");
 
-  $.ajax({ 
-    url:'http://192.168.1.50/json-db',
-     data: { 
-      task: 'set', 
-      key: 'MouadBlog', 
-      value: JSON.stringify(contenu),
-    } 
-  });
+	$.ajax({ 
+		url:'http://192.168.1.50/json-db',
+		data: { 
+			task: 'set', 
+			key: 'MouadBlog', 
+			value: JSON.stringify(contenu),
+		} 
+	});
 });
 
 //-- markdown
@@ -56,8 +56,8 @@ $("#button").click(function(){
 $("#text").keyup(function(){
 	
 	var converter = new showdown.Converter(),
-   	 	text      = $('#text').val(),
-   	 	html      = converter.makeHtml(text);
+	text      = $('#text').val(),
+	html      = converter.makeHtml(text);
 	
 	$("#texthtml").html(html);
 });
@@ -70,17 +70,17 @@ $.ajax({
 	data: { 
 		task: 'get',
 		key: 'MouadBlog', 
-		} 
+	} 
 })
 .done(function(data){
 
 	tab=JSON.parse(data);
 	console.log(tab);
 
- 	for (var i = 0; i < tab.length; i++) {
- 		$("#title").append('<option value="'+i+'">'+tab[i].titre+'</option>');
- 		$("#info").append('<div class="ID'+i+'">'+tab[i].text+'</div>');
- 	}
+	for (var i = 0; i < tab.length; i++) {
+		$("#title").append('<option value="'+i+'">'+tab[i].titre+'</option>');
+		$("#info").append('<div class="ID'+i+'">'+tab[i].text+'</div>');
+	}
 });	
 
 
@@ -93,29 +93,3 @@ $('#title').change(function(){
 
 });
 
-
-
-
-
-
-
- // $.ajax({
-	// url:'http://192.168.1.50/json-db',
- // 	data: {
- // 		task: 'delete',
- // 		key: 'MouadBlog'
- // 	}
- // });
-	
-
-
-
-// $.ajax({
-//   url:'http://192.168.1.50/json-db',
-//   data: {
-//     task: 'get',
-//     key: 'MouadBlog'
-//     },
-//    success: function(data){
-//    }
-//   });
