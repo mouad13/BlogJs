@@ -1,29 +1,27 @@
 window.onload=function() {
-  horloge('div_horloge');
+	horloge('div_horloge');
 };
- 
+
 function horloge(el) {
-  if(typeof el=="string") { el = document.getElementById(el); }
-  function actualiser() {
-    var date = new Date();
-    var str = date.getHours();
-    str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
-    str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
-    el.innerHTML = str;
-  }
-  actualiser();
-  setInterval(actualiser,1000);
+	if(typeof el=="string") { el = document.getElementById(el); }
+	function actualiser() {
+		var date = new Date();
+		var str = date.getHours();
+		str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
+		str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
+		el.innerHTML = str;
+	}
+	actualiser();
+	setInterval(actualiser,1000);
 }
 
 
+//-- Administration
 
 var titre = ""
 var text = ""
 
 
-
-
-//-- markdown
 
 $("#titre").keyup(function(){
 	titre = $("#titre").val();
@@ -36,8 +34,6 @@ $("#text").keyup(function(){
 });	
 
 
-
-//-- Administration
 
 $("#button").click(function(){
 
@@ -55,6 +51,8 @@ $("#button").click(function(){
   });
 });
 
+//-- markdown
+
 $("#text").keyup(function(){
 	
 	var converter = new showdown.Converter(),
@@ -64,11 +62,8 @@ $("#text").keyup(function(){
 	$("#texthtml").html(html);
 });
 
-
-
-
-
 //-- Site public
+var tab;
 
 $.ajax({ 
 	url:'http://192.168.1.50/json-db', 
@@ -83,15 +78,18 @@ $.ajax({
 	console.log(tab);
 
  	for (var i = 0; i < tab.length; i++) {
- 		$("#title").append('<option value="ID'+i+'">'+tab[i].titre+'</option>');
+ 		$("#title").append('<option value="'+i+'">'+tab[i].titre+'</option>');
  		$("#info").append('<div class="ID'+i+'">'+tab[i].text+'</div>');
  	}
 });	
 
 
-$('#title').on('change', function(){
-	alert('changé !');
+//-- affichage
 
+$('#title').change(function(){
+	var koko = $('#title').val();
+	var lolo = tab[koko].text;
+	$("#info").html(lolo);
 
 });
 
@@ -99,3 +97,25 @@ $('#title').on('change', function(){
 
 
 
+
+
+ // $.ajax({
+	// url:'http://192.168.1.50/json-db',
+ // 	data: {
+ // 		task: 'delete',
+ // 		key: 'MouadBlog'
+ // 	}
+ // });
+	
+
+
+
+// $.ajax({
+//   url:'http://192.168.1.50/json-db',
+//   data: {
+//     task: 'get',
+//     key: 'MouadBlog'
+//     },
+//    success: function(data){
+//    }
+//   });
