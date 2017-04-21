@@ -3,12 +3,12 @@ window.onload=function() {
 };
 
 function horloge(el) {
-	if(typeof el=="string") { el = document.getElementById(el); }
+	if(typeof el == "string") { el = document.getElementById(el); }
 	function actualiser() {
 		var date = new Date();
 		var str = date.getHours();
-		str += ':'+(date.getMinutes()<10?'0':'')+date.getMinutes();
-		str += ':'+(date.getSeconds()<10?'0':'')+date.getSeconds();
+		str += ':' + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
+		str += ':' + (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
 		el.innerHTML = str;
 	}
 	actualiser();
@@ -94,6 +94,14 @@ $.ajax({
 		$('#btnModif').data('_id', id);
 	});
 
+	var converter = new showdown.Converter(),
+	html      = converter.makeHtml(text);
+	$("#info").html(html);
+
+
+
+
+
 });	
 
 
@@ -103,7 +111,12 @@ $.ajax({
 $('#title').change(function(){
 	var koko = $('#title').val();
 	var lolo = tab[koko].text;
-	$("#info").html(lolo);
+	
+	var converter = new showdown.Converter(),
+	text      = lolo;
+	html      = converter.makeHtml(text);
+	
+	$("#info").html(html);
 
 });
 
@@ -145,4 +158,21 @@ $("#btnModif").click(function(){
 
 
 
+// $.ajax({
+ 	// url:'http://192.168.1.50/json-db',
+  // 	data: {
+  // 		task: 'delete',
+  // 		key: 'MouadBlog'
+  // 	}
+  // });
 
+
+// $.ajax({
+//   url:'http://192.168.1.50/json-db',
+//   data: {
+//     task: 'get',
+//     key: 'MouadBlog'
+//     },
+//    success: function(data){
+//    }
+//   });
