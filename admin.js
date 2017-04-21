@@ -34,7 +34,6 @@ $("#text").keyup(function(){
 });	
 
 
-
 $("#button").click(function(){
 
 	var contenu = {"titre" : titre, "text" : text}
@@ -51,7 +50,7 @@ $("#button").click(function(){
 	});
 });
 
-//-- markdown
+//-- showdown
 
 $("#text").keyup(function(){
 	
@@ -80,8 +79,23 @@ $.ajax({
 	for (var i = 0; i < tab.length; i++) {
 		$("#title").append('<option value="'+i+'">'+tab[i].titre+'</option>');
 		$("#info").append('<div class="ID'+i+'">'+tab[i].text+'</div>');
+		$('#info').html("");
+
+		$('#contenu').append('<a class="idlien" value="'+i+'">'+tab[i].titre+'</a>')
 	}
+
+	$(".idlien").click(function(){
+		var koko = $(this).attr('value');
+		var lolo = tab[koko].text;
+		$("#infotitre").html(lolo);
+		$("#titreModif").val(tab[koko].titre);
+		var id = tab[koko]._id;
+		$('#btn').data('_id', id);
+		$('#btnModif').data('_id', id);
+	});
+
 });	
+
 
 
 //-- affichage
@@ -92,4 +106,43 @@ $('#title').change(function(){
 	$("#info").html(lolo);
 
 });
+
+
+//-- Supprimer
+
+$('#btn').click(function(){
+	var id = $(this).data('_id');
+
+
+	$.ajax({
+		url:'http://192.168.1.50/json-db',
+		data: {
+			task: 'delete',
+			_id: id,
+		}
+	});
+
+});
+
+
+$("#btnModif").click(function(){
+
+	var contenu = {"titre" : $("#titreModif").val(), "text" : $("#infotitre").val()};
+	var id = $(this).data('_id');
+	
+	$("#infotitre").val("");
+	$("#titreModif").val("");
+	
+	$.ajax({
+		url:'http://192.168.1.50/json-db',
+		data: {
+			task: 'update',
+			_id: id,
+			value: JSON.stringify( contenu)
+		}
+	});
+});
+
+
+
 
