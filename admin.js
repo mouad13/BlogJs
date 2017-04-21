@@ -81,7 +81,7 @@ $.ajax({
 		$("#info").append('<div class="ID'+i+'">'+tab[i].text+'</div>');
 		$('#info').html("");
 
-		$('#contenu').append('<a class="idlien" value="'+i+'">'+tab[i].titre+'</a>')
+		$('#contenu').append('<ul><li><a class="idlien" value="'+i+'">'+tab[i].titre+'</a></li></ul>')
 	}
 
 	$(".idlien").click(function(){

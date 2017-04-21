@@ -39,18 +39,32 @@
 
 	</div>  
 
-	<div id="contenu">
-		
-	</div>
+	<div class="row">
 
-	<div>
-		<input type="text" class="form-control" placeholder="Titre" id="titreModif">
+		<div class="col-md-4">
+			<div>
+				
+				<ul id="contenu">
+					
+				</ul>
+				
+			</div>
+		</div>	
 
-		<textarea class="form-control" id="infotitre"></textarea>
-		
-		<button id="btnModif" class="btn btn-success btn-lg btn-block">Modifier</button>
-	</div>
+		<div class="col-md-8">
+			<div>
+				
+				<h1>Titres</h1>
+				<input type="text" class="form-control" id="titreModif">
 
+				<h1>Info</h1>
+				<textarea class="form-control" id="infotitre" rows="10"></textarea>
+				
+				<button id="btnModif" class="btn btn-success btn-lg btn-block">Modifier</button>
+
+			</div>
+		</div>	
+	</div>	
 
 	<script src="node_modules/showdown/dist/showdown.min.js"></script>
 	<script src="node_modules/jquery/dist/jquery.js"></script>
