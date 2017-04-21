@@ -20,24 +20,25 @@
 		<div id="div_horloge" class="pull-right"></div></center>
 	</nav>
 
-	<div class="container">
+		
+	<div class="row">
+		<div class="col-md-8">
 
+			<input type="text" class="form-control" placeholder="Titre" id="titre">
+			<textarea class="form-control" placeholder="Texte" rows="3" id="text"></textarea>
+			<button id="button" class="btn btn-primary btn-lg btn-block">Envoyer</button> 
+		
+		</div>		
 
-		<input type="text" class="form-control" placeholder="Titre" id="titre">
+		<div class="col-md-4">
 
-		<textarea class="form-control" placeholder="Texte" rows="3" id="text"></textarea>
+			<div id="texthtml">
+			</div>  
 
-		<button id="button" class="btn btn-primary btn-lg btn-block">Envoyer</button> 
-
-		<button id="btn" class="btn btn-danger btn-lg btn-block">Supprimer</button>
-
-
+		</div>	
 	</div>
 
-	<div id="texthtml">
-
-
-	</div>  
+	<div class="col-xs-9">.col-xs-9</div>
 
 	<div class="row">
 
@@ -61,6 +62,7 @@
 				<textarea class="form-control" id="infotitre" rows="10"></textarea>
 				
 				<button id="btnModif" class="btn btn-success btn-lg btn-block">Modifier</button>
+				<button id="btn" class="btn btn-danger btn-lg btn-block">Supprimer</button>
 
 			</div>
 		</div>	
