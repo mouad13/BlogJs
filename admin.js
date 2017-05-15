@@ -41,10 +41,9 @@ $("#button").click(function(){
 	$("textarea").val("");
 
 	$.ajax({ 
-		url:'http://192.168.1.50/json-db',
+		url:'/signup',
 		data: { 
-			task: 'set', 
-			key: 'MouadBlog', 
+			 
 			value: JSON.stringify(contenu),
 		} 
 	});
@@ -65,11 +64,8 @@ $("#text").keyup(function(){
 var tab;
 
 $.ajax({ 
-	url:'http://192.168.1.50/json-db', 
-	data: { 
-		task: 'get',
-		key: 'MouadBlog', 
-	} 
+	url:'/auth',
+	data: {} 
 })
 .done(function(data){
 
@@ -124,9 +120,8 @@ $('#btn').click(function(){
 
 
 	$.ajax({
-		url:'http://192.168.1.50/json-db',
+		url:'/delete',
 		data: {
-			task: 'delete',
 			_id: id,
 		}
 	});
@@ -153,3 +148,22 @@ $("#btnModif").click(function(){
 });
 
 
+
+// $.ajax({
+ 	// url:'http://192.168.1.50/json-db',
+  // 	data: {
+  // 		task: 'delete',
+  // 		key: 'MouadBlog'
+  // 	}
+  // });
+
+
+// $.ajax({
+//   url:'http://192.168.1.50/json-db',
+//   data: {
+//     task: 'get',
+//     key: 'MouadBlog'
+//     },
+//    success: function(data){
+//    }
+//   });
