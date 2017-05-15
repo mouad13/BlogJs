@@ -1,11 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var uuidV1 = require('uuid/v1');
+var nodefs = require("fs");
 
 
 var app = express();
 
 var contenu = [];
+charge();
 //app.set('views', './views');
 //app.set('view engine', 'jade');
 
@@ -13,8 +15,25 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(express.static(__dirname+ '/'));
 
+function charge(){
+		
+	nodefs.readFile('blog.json',function(err,data){
+		if(err)throw err
+			contenu=JSON.parse(data);
+		
+		//console.log(contenu);
+	});
 
+}
 
+function enreg (response){
+	var koko = JSON.stringify(contenu);
+	nodefs.writeFile('blog.json', koko, function(err, data){
+		if(err)throw err
+		response.send("ok");
+
+	})
+}
 
 app.get('/signup', function(req, res){
 	
@@ -25,6 +44,7 @@ app.get('/signup', function(req, res){
 	contenu.push(article);
 	console.log(contenu);
 
+	enreg(res);
 });
 	
 
