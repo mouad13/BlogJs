@@ -35,6 +35,8 @@ function enreg (response){
 	})
 }
 
+
+
 app.get('/signup', function(req, res){
 	
 	// rajouter un identifiant unique
@@ -65,8 +67,25 @@ app.get('/delete', function(req, res){
 			continue;
 		}
 	}
+	enreg (res);
 });
 
+
+
+app.get('/update', function(req, res){
+
+	var id = (req.query._id); 
+
+	for (var i = 0; i < contenu.length; i++){
+		if (contenu[i]._id == id) {
+			contenu[i] = JSON.parse(req.query.value)
+			continue;
+		}
+	}
+
+	enreg (res);
+});
+			
 
 
 

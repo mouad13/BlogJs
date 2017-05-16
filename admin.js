@@ -43,7 +43,7 @@ $("#button").click(function(){
 	$.ajax({ 
 		url:'/signup',
 		data: { 
-			 
+
 			value: JSON.stringify(contenu),
 		} 
 	});
@@ -62,45 +62,57 @@ $("#text").keyup(function(){
 
 //-- Site public
 var tab;
+recharger();
 
-$.ajax({ 
-	url:'/auth',
-	data: {} 
-})
-.done(function(data){
 
-	tab=JSON.parse(data);
-	console.log(tab);
 
-	for (var i = 0; i < tab.length; i++) {
-		$("#title").append('<option value="'+i+'">'+tab[i].titre+'</option>');
-		$("#info").append('<div class="ID'+i+'">'+tab[i].text+'</div>');
-		$('#info').html("");
 
-		$('#contenu').append('<ul><li><a class="idlien" value="'+i+'">'+tab[i].titre+'</a></li></ul>')
-	}
+function recharger (){
 
-	$(".idlien").click(function(){
-		var koko = $(this).attr('value');
-		var lolo = tab[koko].text;
-		$("#infotitre").html(lolo);
-		$("#titreModif").val(tab[koko].titre);
-		var id = tab[koko]._id;
-		$('#btn').data('_id', id);
-		$('#btnModif').data('_id', id);
-	});
+	$.ajax({ 
+		url:'/auth',
+		data: {} 
+	})
+	.done(function(data){
 
-	var converter = new showdown.Converter(),
-	html      = converter.makeHtml(text);
-	$("#info").html(html);
+		tab=JSON.parse(data);
+		console.log(tab);
 
-});	
+		for (var i = 0; i < tab.length; i++) {
+			$("#title").append('<option value="'+i+'">'+tab[i].titre+'</option>');
+			$("#info").append('<div class="ID'+i+'">'+tab[i].text+'</div>');
+			$('#info').html("");
 
+			$('#contenu').append('<ul><li><a class="idlien" value="'+i+'">'+tab[i].titre+'</a></li></ul>')
+		}
+
+		$(".idlien").click(function(){
+			var koko = $(this).attr('value');
+			var lolo = tab[koko].text;
+			$("#infotitre").html(lolo);
+			$("#titreModif").val(tab[koko].titre);
+			var id = tab[koko]._id;
+			$('#btn').data('_id', id);
+			$('#btnModif').data('_id', id);
+
+		});
+
+		var converter = new showdown.Converter(),
+		html      = converter.makeHtml(text);
+		$("#info").html(html);
+
+		var rael = converter.makeHtml(tab[0].text)
+		$("#info").html(rael);
+
+
+	});	
+
+}
 
 
 //-- affichage
 
-$('#title').change(function(){
+$('#title').click(function(){
 	var koko = $('#title').val();
 	var lolo = tab[koko].text;
 	
@@ -129,6 +141,9 @@ $('#btn').click(function(){
 });
 
 
+//-- Modifier
+
+
 $("#btnModif").click(function(){
 
 	var contenu = {"titre" : $("#titreModif").val(), "text" : $("#infotitre").val()};
@@ -138,9 +153,8 @@ $("#btnModif").click(function(){
 	$("#titreModif").val("");
 	
 	$.ajax({
-		url:'http://192.168.1.50/json-db',
+		url:'/update',
 		data: {
-			task: 'update',
 			_id: id,
 			value: JSON.stringify( contenu)
 		}
